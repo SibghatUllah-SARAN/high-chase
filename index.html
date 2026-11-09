@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Chase - Premium Footwear | Changi #06 Multan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#F59E0B',
+                            brightYellow: '#FBBF24',
+                            gold: '#D97706',
+                            dark: '#0F172A',
+                            darker: '#020617',
+                            cardBg: '#1E293B',
+                            accent: '#EF4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+        }
+        .yellow-gradient-text {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .yellow-btn-gradient {
+            background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
+        }
+        .yellow-btn-gradient:hover {
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #F59E0B;
+            border-radius: 3px;
+        }
+        #interactiveMap {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="custom-scrollbar min-h-screen flex flex-col justify-between selection:bg-brand-yellow selection:text-black">
+
+    <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-black text-xs sm:text-sm font-bold py-2.5 px-4 text-center z-50 relative shadow-md">
+        <div class="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-black animate-bounce"></i>
+                <span>Visit Store: <strong class="underline font-black" id="topNavLocation">Changi #06, Multan, Pakistan</strong></span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-bold">
+                <span><i class="fa-solid fa-truck-fast mr-1"></i> Delivery Across Multan & Pakistan</span>
+                <span class="hidden md:inline">|</span>
+                <span class="bg-black text-amber-300 px-2 py-0.5 rounded-md font-mono"><i class="fa-solid fa-clock text-amber-400 mr-1"></i> Cart Order Expiry: 3 Days</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 glass-panel border-b border-brand-yellow/20 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchCategory('Men')">
+                    <div class="w-11 h-11 bg-brand-brightYellow rounded-2xl flex items-center justify-center text-black font-black text-2xl shadow-lg shadow-amber-500/20 transform -rotate-3 border-2 border-amber-300">
+                        HC
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-wider text-white block leading-none">HIGH <span class="yellow-gradient-text">CHASE</span></span>
+                        <span class="text-[10px] text-amber-400 tracking-widest uppercase font-bold">Shoes Shop • Multan</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Tabs -->
+                <nav class="hidden md:flex items-center space-x-2 text-sm font-bold bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800">
+                    <button onclick="switchCategory('Men')" id="nav-Men" class="nav-tab text-brand-yellow bg-slate-800 px-5 py-2 rounded-xl transition-all shadow">
+                        <i class="fa-solid fa-person mr-1.5"></i> Men's Collection
+                    </button>
+                    <button onclick="switchCategory('Women')" id="nav-Women" class="nav-tab text-slate-300 hover:text-brand-yellow px-5 py-2 rounded-xl transition-all">
+                        <i class="fa-solid fa-person-dress mr-1.5"></i> Women's Collection 👠
+                    </button>
+                    <button onclick="switchCategory('Kids')" id="nav-Kids" class="nav-tab text-slate-300 hover:text-brand-yellow px-5 py-2 rounded-xl transition-all">
+                        <i class="fa-solid fa-child mr-1.5"></i> Kid's Collection
+                    </button>
+                </nav>
+
+                <!-- Search Bar & Action Buttons -->
+                <div class="flex items-center space-x-3">
+                    
+                    <!-- Search Input -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search shoes..." class="bg-slate-900 border border-slate-700 text-xs text-white rounded-xl pl-9 pr-3 py-2 w-44 focus:w-56 focus:border-brand-yellow focus:outline-none transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+                    </div>
+
+                    <!-- Toggle Store Manager / Admin Section -->
+                    <button onclick="scrollToSection('general-section')" class="bg-slate-800 hover:bg-slate-700 text-brand-yellow border border-brand-yellow/30 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="hidden sm:inline">Owner Info</span>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button onclick="toggleCartDrawer()" class="yellow-btn-gradient text-black font-extrabold px-4 py-2 rounded-xl flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:scale-105 transition transform active:scale-95 relative">
+                        <i class="fa-solid fa-bag-shopping text-base"></i>
+                        <span class="hidden sm:inline">Cart</span>
+                        <span id="cartCountBadge" class="bg-slate-950 text-amber-400 text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-amber-400 ml-1">0</span>
+                    </button>
+
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Bar -->
+            <div class="md:hidden flex justify-around py-2 border-t border-slate-800 text-xs font-bold">
+                <button onclick="switchCategory('Men')" id="mobile-nav-Men" class="text-brand-yellow py-1 px-3 rounded-lg">Men's</button>
+                <button onclick="switchCategory('Women')" id="mobile-nav-Women" class="text-slate-400 py-1 px-3 rounded-lg">Women's 👠</button>
+                <button onclick="switchCategory('Kids')" id="mobile-nav-Kids" class="text-slate-400 py-1 px-3 rounded-lg">Kid's</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <section class="relative overflow-hidden py-10 lg:py-16 bg-gradient-to-b from-brand-darker via-brand-dark to-slate-950 border-b border-slate-800">
+            <div class="absolute top-1/2 left-1/3 -translate-y-1/2 w-96 h-96 bg-brand-yellow/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full text-brand-brightYellow text-xs font-black uppercase tracking-widest">
+                            <i class="fa-solid fa-shop"></i> Store Location: Changi Shop #06, Multan
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                            STEP INTO LUXURY AT <br/>
+                            <span class="yellow-gradient-text">HIGH CHASE SHOE SHOP</span>
+                        </h1>
+                        <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+                            Discover over 60+ exclusive designs in Men's, Women's heels & formal wear, and Kid's comfort shoes. Enjoy active <strong>10% OFF & 30% OFF</strong> promo deals at our flagship Multan outlet!
+                        </p>
+                        
+                        <!-- Badges -->
+                        <div class="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
+                            <div class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <span class="bg-red-600 text-white font-extrabold px-2 py-0.5 rounded">30% OFF</span>
+                                <span>Selected Heels & Sneakers</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <span class="bg-amber-500 text-black font-extrabold px-2 py-0.5 rounded">10% OFF</span>
+                                <span>Fresh Men & Kids Stock</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                            <a href="#catalog-section" class="yellow-btn-gradient text-black font-extrabold px-7 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 hover:scale-105 transition flex items-center gap-2 text-sm">
+                                <span>EXPLORE SHOE CATALOG</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <button onclick="scrollToSection('general-section')" class="bg-slate-900 border border-amber-500/40 text-amber-400 hover:bg-slate-800 font-extrabold px-6 py-3.5 rounded-xl transition flex items-center gap-2 text-sm">
+                                <i class="fa-solid fa-store"></i>
+                                <span>Changi #06 Multan Info</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden border-2 border-brand-yellow/40 bg-slate-900 shadow-2xl group">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="High Chase Showcase Shoe" class="w-full h-[320px] sm:h-[380px] object-cover group-hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90"></div>
+                            
+                            <div class="absolute bottom-5 left-5 right-5 p-4 glass-panel rounded-2xl flex justify-between items-center">
+                                <div>
+                                    <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">HOT SELLER</span>
+                                    <h3 class="text-base font-bold text-white mt-1">High Chase Stealth Air Pro</h3>
+                                    <p class="text-brand-yellow font-extrabold text-lg">Rs. 8,400 <span class="text-slate-400 text-xs line-through font-normal ml-2">Rs. 12,000</span></p>
+                                </div>
+                                <button onclick="quickAddFeaturedShoe()" class="yellow-btn-gradient text-black p-3 rounded-xl shadow-lg font-bold hover:scale-110 transition">
+                                    <i class="fa-solid fa-cart-plus text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="general-section" class="bg-slate-900 border-b border-slate-800 py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-yellow/30 relative">
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+                        <div>
+                            <span class="text-brand-yellow text-xs font-black uppercase tracking-widest"><i class="fa-solid fa-sliders"></i> Owner & Store Updates</span>
+                            <h2 class="text-2xl font-black text-white mt-1">GENERAL STORE INFORMATION</h2>
+                        </div>
+                        
+                        <button onclick="toggleEditGeneralSection()" id="editToggleBtn" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-4 py-2 rounded-xl text-xs flex items-center gap-2 transition">
+                            <i class="fa-solid fa-pen"></i> Edit Section Details
+                        </button>
+                    </div>
+
+                    <!-- View Mode -->
+                    <div id="generalViewMode" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800">
+                            <div class="text-brand-yellow font-bold text-sm mb-1"><i class="fa-solid fa-bullhorn mr-1.5"></i> Latest Store Announcement</div>
+                            <p id="dispAnnouncement" class="text-xs text-slate-300 leading-relaxed">Special weekend discounts! Visit our physical branch at Changi number #06 Multan for fitting or order online for 3-day reserved pricing.</p>
+                        </div>
+
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800">
+                            <div class="text-brand-yellow font-bold text-sm mb-1"><i class="fa-solid fa-map-location-dot mr-1.5"></i> Shop Address & Contact</div>
+                            <p id="dispAddress" class="text-xs text-slate-300 font-semibold">Shop #06, Changi Market, Multan, Punjab</p>
+                            <p id="dispPhone" class="text-xs text-amber-400 font-bold mt-1"><i class="fa-brands fa-whatsapp mr-1"></i> Phone: +92 300 1234567</p>
+                        </div>
+
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800">
+                            <div class="text-brand-yellow font-bold text-sm mb-1"><i class="fa-solid fa-clock mr-1.5"></i> Store Timings</div>
+                            <p id="dispTimings" class="text-xs text-slate-300">Open Daily: 11:00 AM – 11:00 PM</p>
+                            <span class="inline-block mt-2 bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2 py-0.5 rounded border border-emerald-500/30">SHOP OPEN NOW</span>
+                        </div>
+                    </div>
+
+                    <!-- Edit Form Mode (Hidden by default) -->
+                    <div id="generalEditMode" class="hidden bg-slate-950 p-6 rounded-2xl border border-amber-500/40 space-y-4">
+                        <h3 class="text-sm font-bold text-brand-yellow uppercase"><i class="fa-solid fa-gear"></i> Update Store Details (Live Editable)</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Store Announcement Banner</label>
+                                <textarea id="editAnnouncementInput" rows="2" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-xl p-2.5 focus:border-brand-yellow focus:outline-none"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Shop Address</label>
+                                <input type="text" id="editAddressInput" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-xl p-2.5 focus:border-brand-yellow focus:outline-none mb-2">
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">WhatsApp Phone Number</label>
+                                <input type="text" id="editPhoneInput" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-xl p-2.5 focus:border-brand-yellow focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button onclick="toggleEditGeneralSection()" class="bg-slate-800 text-xs text-slate-300 px-4 py-2 rounded-xl font-bold">Cancel</button>
+                            <button onclick="saveGeneralSection()" class="yellow-btn-gradient text-xs text-black font-extrabold px-5 py-2 rounded-xl">Save Changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="catalog-section" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Collection Header & Category Switches -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <span id="activeCategoryBadge" class="bg-amber-500/20 text-brand-yellow border border-amber-500/30 px-3 py-1 rounded-full text-xs font-black uppercase">MEN'S COLLECTION</span>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-wide mt-2" id="catalogTitle">
+                        MEN'S <span class="yellow-gradient-text">FOOTWEAR CATALOG</span>
+                    </h2>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-1">Showing 20+ verified shoes with prices, discount tags, and size selections.</p>
+                </div>
+
+                <!-- Collection Filter Tabs -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="switchCategory('Men')" class="cat-pill bg-amber-500 text-black font-extrabold px-4 py-2 rounded-xl text-xs sm:text-sm transition shadow-md shadow-amber-500/20" data-category="Men">
+                        <i class="fa-solid fa-person mr-1"></i> Men's
+                    </button>
+                    <button onclick="switchCategory('Women')" class="cat-pill bg-slate-800 text-slate-300 hover:text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition" data-category="Women">
+                        <i class="fa-solid fa-person-dress mr-1"></i> Women's 👠
+                    </button>
+                    <button onclick="switchCategory('Kids')" class="cat-pill bg-slate-800 text-slate-300 hover:text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition" data-category="Kids">
+                        <i class="fa-solid fa-child mr-1"></i> Kid's
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shoes Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamically populated 20+ shoes per collection -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="emptySearchState" class="hidden text-center py-16">
+                <i class="fa-solid fa-shoe-prints text-6xl text-slate-700 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-300">No matching shoes found!</h3>
+                <p class="text-slate-500 text-xs mt-1">Try clearing your search query or selecting a different category tab.</p>
+                <button onclick="resetSearch()" class="mt-4 bg-brand-yellow text-black font-extrabold px-5 py-2 rounded-xl text-xs">Show All Shoes</button>
+            </div>
+        </section>
+
+        <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex justify-end">
+            <div class="w-full max-w-lg bg-brand-dark h-full flex flex-col shadow-2xl border-l border-brand-yellow/30 transform transition-transform duration-300">
+                
+                <!-- Drawer Header -->
+                <div class="p-5 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Your Shopping Cart</h3>
+                            <p class="text-[11px] text-amber-400">High Chase • Changi #06 Multan</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+                </div>
+
+                <!-- 3-Day Expiration Order Banner (MANDATORY REQUIREMENT) -->
+                <div class="bg-gradient-to-r from-red-950 via-slate-950 to-red-950 border-b border-red-800/40 p-3 text-center">
+                    <div class="flex items-center justify-center gap-2 text-xs text-red-400 font-bold">
+                        <i class="fa-solid fa-clock-rotate-left animate-spin text-amber-400"></i>
+                        <span>Order Expiry Timer (Reserved Prices):</span>
+                    </div>
+                    <div id="expiryCountdown" class="text-sm font-black text-amber-300 font-mono tracking-widest mt-0.5">
+                        02d : 23h : 59m : 59s
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Uncompleted cart orders expire in 3 days. Lock your pair now!</p>
+                </div>
+
+                <!-- Cart Items Container -->
+                <div id="cartItemsList" class="flex-grow p-4 overflow-y-auto custom-scrollbar space-y-3">
+                    <!-- Dynamic cart items will render here -->
+                </div>
+
+                <!-- Order Fulfillment Section (3 Buttons & Pathways) -->
+                <div class="p-5 bg-slate-900 border-t border-slate-800 space-y-4">
+                    
+                    <div class="space-y-1 text-xs">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Total Items</span>
+                            <span id="cartTotalItems">0 Pairs</span>
+                        </div>
+                        <div class="flex justify-between text-base font-extrabold text-white pt-1 border-t border-slate-800">
+                            <span>Total Amount Payable</span>
+                            <span id="cartTotalAmount" class="text-amber-400 text-xl">Rs. 0</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-300">Select Fulfillment Method:</p>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <!-- Fulfillment Button 1: Home Delivery -->
+                            <button onclick="selectFulfillment('delivery')" id="btnDelivery" class="fulfillment-btn bg-amber-500 text-black font-extrabold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-amber-400 transition">
+                                <i class="fa-solid fa-truck-ramp-box text-sm"></i>
+                                <span>1. Home Delivery</span>
+                            </button>
+
+                            <!-- Fulfillment Button 2: Store Pickup -->
+                            <button onclick="selectFulfillment('pickup')" id="btnPickup" class="fulfillment-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-slate-700 transition hover:text-white">
+                                <i class="fa-solid fa-store text-sm"></i>
+                                <span>2. Store Pickup</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Details Form with Map Picker -->
+                    <div id="deliveryDetailsBox" class="space-y-3 bg-slate-950 p-3.5 rounded-2xl border border-slate-800 text-xs">
+                        <p class="font-bold text-amber-400"><i class="fa-solid fa-map-pin mr-1"></i> Delivery Details & Map Location</p>
+                        
+                        <input type="text" id="custName" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-brand-yellow focus:outline-none">
+                        <input type="text" id="custPhone" placeholder="WhatsApp / Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-brand-yellow focus:outline-none">
+                        <input type="text" id="custAddress" placeholder="Street / Area Address in Multan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-brand-yellow focus:outline-none">
+
+                        <!-- Interactive Google Map Location Confirmation -->
+                        <div class="space-y-1">
+                            <label class="block text-[11px] font-semibold text-slate-400">Confirm Location on Map:</label>
+                            <div id="interactiveMap" class="w-full h-32 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center text-center p-2 cursor-pointer" onclick="pinCurrentMapLocation(event)">
+                                <div class="absolute inset-0 opacity-20 pointer-events-none"></div>
+                                <div class="relative z-10">
+                                    <i id="mapPinIcon" class="fa-solid fa-location-dot text-2xl text-amber-500 animate-bounce"></i>
+                                    <p id="mapPinCoords" class="text-[10px] text-amber-300 font-mono mt-1">Latitude: 30.1978° N, Longitude: 71.4697° E</p>
+                                    <p class="text-[9px] text-slate-400">Click anywhere inside box to set exact pin</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Store Pickup Info Box (When option 2 is chosen) -->
+                    <div id="pickupInfoBox" class="hidden bg-slate-950 p-3.5 rounded-2xl border border-slate-800 text-xs space-y-2">
+                        <p class="font-bold text-amber-400"><i class="fa-solid fa-shop mr-1"></i> Manual Store Pickup Details</p>
+                        <p class="text-slate-300 text-[11px]">Collect directly from our shop. Your shoes will be reserved for 3 days.</p>
+                        <div class="bg-slate-900 p-2 rounded-xl text-slate-400 text-[11px]">
+                            <strong>Location:</strong> High Chase Shop #06, Changi Market, Multan.<br/>
+                            <strong>Timings:</strong> 11:00 AM - 11:00 PM
+                        </div>
+                    </div>
+
+                    <!-- Fulfillment Button 3: Confirm & Checkout -->
+                    <button onclick="confirmAndCheckout()" class="w-full yellow-btn-gradient text-black font-extrabold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 hover:scale-[1.02] transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-check-circle text-base"></i>
+                        <span id="checkoutBtnText">3. CONFIRM & PLACE ORDER NOW</span>
+                    </button>
+                    
+                    <button onclick="clearCart()" class="w-full text-[11px] text-slate-500 hover:text-red-400 py-0.5 transition">
+                        Clear All Items
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="receiptModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+            <div class="bg-slate-900 border-2 border-brand-yellow/40 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4">
+                <div class="text-center space-y-1">
+                    <div class="w-12 h-12 bg-amber-500 text-black rounded-2xl flex items-center justify-center font-black text-2xl mx-auto shadow-lg shadow-amber-500/30">
+                        HC
+                    </div>
+                    <h3 class="text-xl font-black text-white">ORDER CONFIRMED!</h3>
+                    <p class="text-xs text-amber-400 font-mono">High Chase • Changi #06 Multan</p>
+                </div>
+
+                <div id="receiptBody" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs space-y-2 text-slate-300 font-mono">
+                    <!-- Generated receipt details -->
+                </div>
+
+                <div class="space-y-2">
+                    <button onclick="closeReceiptModal()" class="w-full yellow-btn-gradient text-black font-extrabold py-3 rounded-xl text-xs">
+                        Done & Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <span class="text-xl font-black text-white">HIGH <span class="yellow-gradient-text">CHASE</span></span>
+                <p class="text-xs text-slate-500">Changi Shop #06, Multan • Premium Shoe Outlet</p>
+            </div>
+            
+            <div class="text-xs text-slate-500">
+                © <span id="yearSpan"></span> High Chase Shoes. All Rights Reserved.
+            </div>
+
+            <div class="flex space-x-4 text-amber-400">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast Modal -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-slate-900 border-2 border-brand-yellow text-white px-5 py-3.5 rounded-2xl shadow-2xl hidden flex items-center gap-3">
+        <div class="w-8 h-8 bg-amber-500 text-black rounded-full flex items-center justify-center font-bold text-sm shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h4 id="toastTitle" class="font-bold text-xs text-brand-yellow">Item Added!</h4>
+            <p id="toastMessage" class="text-[11px] text-slate-300">Added to cart. Offer valid for 3 days.</p>
+        </div>
+    </div>
+
+    <script>
+        const shoeCategoriesData = {
+            Men: Array.from({ length: 22 }, (_, i) => ({
+                id: `men-${i + 1}`,
+                title: [
+                    "High Chase Leather Loafer", "Urban Speed Runner Sneakers", "Italian Oxford Formal",
+                    "Multan Street Leather Boots", "Air Velocity Sport Sneakers", "Royal Gold Velvet Khussa",
+                    "Classic Derby Executive", "Air Cushion Track Runner", "Monk Strap Formal Black",
+                    "Casual Mesh Breathable", "Pro Marathon Trainer", "High Chase Glide Sneaker",
+                    "Rugged Outdoor Boots", "Formal Patent Tuxedo Shoe", "Veloce Sport Sneaker",
+                    "Chalse", "Grip Master Trail Runner", "Elegance Suede Loafer",
+                    "Ultra Flex Lightweight", "Prime Edition Gold Boot", "Classic Leather Slip-on", "High Chase Signature Runner"
+                ][i] || `High Chase Men Shoe ${i + 1}`,
+                category: "Men",
+                price: 4500 + (i * 350),
+                discountPercent: (i % 2 === 0) ? 30 : 10,
+                rating: (4.6 + (i % 5) * 0.1).toFixed(1),
+                image: [
+                    "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80"
+                ][i % 7],
+                sizes: ["40", "41", "42", "43", "44"]
+            })),
+
+            Women: Array.from({ length: 22 }, (_, i) => ({
+                id: `women-${i + 1}`,
+                title: [
+                    "Golden Glamour Stiletto Heel 👠", "Elegance Crystal Party Heel 👠", "Velvet Bridal Block Heel 👠",
+                    "High Chase Chic Pump", "Satin Rose Gold Heel 👠", "Casual Comfort Sandal",
+                    "Multan Designer Khussa", "Glitter Party Wedge", "Ankle Strap Party Heel 👠",
+                    "Royal Velvet High Heel 👠", "Chic Leather Platform", "Sparkle Evening Heel 👠",
+                    "Comfort Soft Sole Pump", "Glamour Metallic Stiletto 👠", "Urban Female Sneaker",
+                    "Embroidered Traditional Khussa", "Suede Block Heel Pump", "Floral Summer Wedge",
+                    "Crystal Strap Heel 👠", "High Chase Diva Stiletto 👠", "Modern Pointed Toe Heel 👠", "Luxury Gold Heel 👠"
+                ][i] || `High Chase Women Heel ${i + 1}`,
+                category: "Women",
+                price: 3800 + (i * 300),
+                discountPercent: (i % 3 === 0) ? 30 : 10,
+                rating: (4.7 + (i % 4) * 0.1).toFixed(1),
+                image: [
+                    "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1596568359553-a56de6970068?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1560343776-97e7d202ff0e?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=800&q=80"
+                ][i % 4],
+                sizes: ["36", "37", "38", "39", "40"]
+            })),
+
+            Kids: Array.from({ length: 22 }, (_, i) => ({
+                id: `kids-${i + 1}`,
+                title: [
+                    "Junior Speed Light Sneaker", "Kids Glowing LED Runner", "Mini Champions Sport Shoe",
+                    "Cute Cartoon Casual Pump", "Junior Leather Formal", "Kids Soft Cushion Sandal",
+                    "Playground Active Trainer", "Junior High Chase Boots", "Lightweight Canvas Kids",
+                    "Kids Party Shiny Pump", "Junior Athletic Sprint", "Comfy Slip-on Kids",
+                    "Junior Rainbow Sneaker", "Kids Durable School Shoe", "Junior Track Star",
+                    "Mini High Chase Air", "Kids Velvet Khussa", "Junior Outdoor Hiker",
+                    "Kids Fun Time Runner", "Junior Gold Edition", "Kids Everyday Casual", "Junior Flex Sneaker"
+                ][i] || `High Chase Kid Shoe ${i + 1}`,
+                category: "Kids",
+                price: 2200 + (i * 200),
+                discountPercent: (i % 2 === 0) ? 10 : 30,
+                rating: (4.8 + (i % 3) * 0.1).toFixed(1),
+                image: [
+                    "https://images.unsplash.com/photo-1514989940723-e8e51635b702?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1507464098880-e36e3cae1c58?auto=format&fit=crop&w=800&q=80"
+                ][i % 3],
+                sizes: ["28", "29", "30", "31", "32", "33", "34", "35"]
+            }))
+        };
+
+        let currentCategory = 'Men';
+        let cart = [];
+        let fulfillmentType = 'delivery'; // 'delivery' or 'pickup'
+        let pinnedLat = 30.1978;
+        let pinnedLng = 71.4697;
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('yearSpan').textContent = new Date().getFullYear();
+            loadGeneralSectionData();
+            loadCart();
+            renderCatalog();
+            updateCartUI();
+            startOrderExpiryCountdown();
+        });
+
+        function switchCategory(cat) {
+            currentCategory = cat;
+
+            // Update Desktop Nav Tabs UI
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.className = "nav-tab text-slate-300 hover:text-brand-yellow px-5 py-2 rounded-xl transition-all";
+            });
+            const activeNav = document.getElementById(`nav-${cat}`);
+            if (activeNav) activeNav.className = "nav-tab text-brand-yellow bg-slate-800 px-5 py-2 rounded-xl transition-all shadow";
+
+            // Update Mobile Nav UI
+            document.querySelectorAll('[id^="mobile-nav-"]').forEach(btn => {
+                btn.className = "text-slate-400 py-1 px-3 rounded-lg";
+            });
+            const activeMobileNav = document.getElementById(`mobile-nav-${cat}`);
+            if (activeMobileNav) activeMobileNav.className = "text-brand-yellow font-bold bg-slate-800 py-1 px-3 rounded-lg";
+
+            // Update Category Pill Buttons
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if (btn.getAttribute('data-category') === cat) {
+                    btn.className = "cat-pill bg-amber-500 text-black font-extrabold px-4 py-2 rounded-xl text-xs sm:text-sm transition shadow-md shadow-amber-500/20";
+                } else {
+                    btn.className = "cat-pill bg-slate-800 text-slate-300 hover:text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition";
+                }
+            });
+
+            // Update Category Headers
+            document.getElementById('activeCategoryBadge').textContent = `${cat.toUpperCase()}'S COLLECTION (${shoeCategoriesData[cat].length} SHOES)`;
+            document.getElementById('catalogTitle').innerHTML = `${cat.toUpperCase()}'S <span class="yellow-gradient-text">FOOTWEAR CATALOG</span>`;
+
+            renderCatalog();
+        }
+
+        function handleSearch() {
+            renderCatalog();
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            renderCatalog();
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptySearchState');
+            const searchVal = document.getElementById('searchInput')?.value.toLowerCase().trim() || '';
+
+            let shoesList = shoeCategoriesData[currentCategory] || [];
+            if (searchVal) {
+                shoesList = shoesList.filter(s => s.title.toLowerCase().includes(searchVal));
+            }
+
+            if (shoesList.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            grid.innerHTML = shoesList.map(shoe => {
+                const discountedPrice = Math.round(shoe.price * (1 - shoe.discountPercent / 100));
+
+                return `
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+                        
+                        <!-- Shoe Image & Discount Tag Badge -->
+                        <div class="relative h-56 bg-slate-950 overflow-hidden">
+                            <img src="${shoe.image}" alt="${shoe.title}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
+                            
+                            <!-- Discount Tag Badge (10% or 30% OFF) -->
+                            <div class="absolute top-3 left-3 ${shoe.discountPercent === 30 ? 'bg-red-600' : 'bg-amber-500 text-black'} text-white font-black text-xs px-2.5 py-1 rounded-lg shadow-lg flex items-center gap-1">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>${shoe.discountPercent}% OFF</span>
+                            </div>
+
+                            <div class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-2 py-0.5 rounded-md border border-slate-700">
+                                Size: ${shoe.sizes[0]}-${shoe.sizes[shoe.sizes.length-1]}
+                            </div>
+                        </div>
+
+                        <!-- Card Info -->
+                        <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-1">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="font-bold">${shoe.rating}</span>
+                                    <span class="text-slate-500">(${shoe.category})</span>
+                                </div>
+                                <h3 class="text-sm font-extrabold text-white group-hover:text-amber-400 transition line-clamp-1">${shoe.title}</h3>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+                                <div>
+                                    <div class="text-[10px] text-slate-400">Price (Changi #06)</div>
+                                    <div class="flex items-baseline gap-1.5">
+                                        <span class="text-base font-black text-amber-400">Rs. ${discountedPrice.toLocaleString()}</span>
+                                        <span class="text-xs text-slate-500 line-through">Rs. ${shoe.price.toLocaleString()}</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="addToCart('${shoe.id}')" class="yellow-btn-gradient text-black font-extrabold p-2.5 rounded-xl hover:scale-110 transition active:scale-95 shadow-md shadow-amber-500/10" title="Add to Cart">
+                                    <i class="fa-solid fa-cart-plus text-base"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addToCart(shoeId) {
+            let foundShoe = null;
+            for (const cat in shoeCategoriesData) {
+                const item = shoeCategoriesData[cat].find(s => s.id === shoeId);
+                if (item) {
+                    foundShoe = item;
+                    break;
+                }
+            }
+            if (!foundShoe) return;
+
+            const discountedPrice = Math.round(foundShoe.price * (1 - foundShoe.discountPercent / 100));
+            const existingIndex = cart.findIndex(i => i.id === shoeId);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: foundShoe.id,
+                    title: foundShoe.title,
+                    price: discountedPrice,
+                    originalPrice: foundShoe.price,
+                    image: foundShoe.image,
+                    qty: 1
+                });
+            }
+
+            saveCart();
+            showToast('Item Added to Cart!', `${foundShoe.title} reserved. Offer expires in 3 days.`);
+        }
+
+        function quickAddFeaturedShoe() {
+            addToCart('men-2');
+            toggleCartDrawer();
+        }
+
+        function saveCart() {
+            localStorage.setItem('high_chase_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function loadCart() {
+            const saved = localStorage.getItem('high_chase_cart');
+            if (saved) {
+                try { cart = JSON.parse(saved); } catch (e) { cart = []; }
+            }
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cartCountBadge');
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            countBadge.textContent = totalQty;
+
+            document.getElementById('cartTotalItems').textContent = `${totalQty} Pairs`;
+
+            const list = document.getElementById('cartItemsList');
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-2 text-slate-700"></i>
+                        <p class="text-xs">Your shopping cart is empty!</p>
+                        <button onclick="toggleCartDrawer()" class="mt-3 text-xs bg-amber-500 text-black font-bold px-4 py-2 rounded-xl">Browse Shoes</button>
+                    </div>
+                `;
+                document.getElementById('cartTotalAmount').textContent = 'Rs. 0';
+                return;
+            }
+
+            let subtotal = 0;
+            list.innerHTML = cart.map((item, index) => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+
+                return `
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex gap-3 items-center">
+                        <img src="${item.image}" alt="${item.title}" class="w-14 h-14 object-cover rounded-lg bg-slate-900">
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.title}</h4>
+                            <div class="text-xs text-amber-400 font-bold mt-0.5">Rs. ${item.price.toLocaleString()}</div>
+                            
+                            <!-- Qty buttons -->
+                            <div class="flex items-center gap-2 mt-1.5">
+                                <button onclick="changeQty(${index}, -1)" class="w-5 h-5 bg-slate-800 text-white rounded flex items-center justify-center font-bold text-xs hover:bg-slate-700">-</button>
+                                <span class="text-xs text-slate-200 font-bold">${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)" class="w-5 h-5 bg-slate-800 text-white rounded flex items-center justify-center font-bold text-xs hover:bg-slate-700">+</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button onclick="removeFromCart(${index})" class="text-slate-500 hover:text-red-400 text-sm p-1">&times;</button>
+                            <div class="text-xs font-bold text-white mt-3">Rs. ${itemTotal.toLocaleString()}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cartTotalAmount').textContent = `Rs. ${subtotal.toLocaleString()}`;
+        }
+
+        function changeQty(index, delta) {
+            if (cart[index]) {
+                cart[index].qty += delta;
+                if (cart[index].qty <= 0) cart.splice(index, 1);
+                saveCart();
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+        }
+
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('hidden');
+        }
+
+        function startOrderExpiryCountdown() {
+            let targetTime = localStorage.getItem('high_chase_timer_target');
+            if (!targetTime) {
+                targetTime = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('high_chase_timer_target', targetTime);
+            } else {
+                targetTime = parseInt(targetTime, 10);
+            }
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const diff = targetTime - now;
+
+                if (diff <= 0) {
+                    targetTime = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('high_chase_timer_target', targetTime);
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const formatted = `${String(days).padStart(2, '0')}d : ${String(hours).padStart(2, '0')}h : ${String(minutes).padStart(2, '0')}m : ${String(seconds).padStart(2, '0')}s`;
+                const elem = document.getElementById('expiryCountdown');
+                if (elem) elem.textContent = formatted;
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        function selectFulfillment(type) {
+            fulfillmentType = type;
+            const btnDelivery = document.getElementById('btnDelivery');
+            const btnPickup = document.getElementById('btnPickup');
+            const deliveryBox = document.getElementById('deliveryDetailsBox');
+            const pickupBox = document.getElementById('pickupInfoBox');
+
+            if (type === 'delivery') {
+                btnDelivery.className = "fulfillment-btn bg-amber-500 text-black font-extrabold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-amber-400 transition";
+                btnPickup.className = "fulfillment-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-slate-700 transition hover:text-white";
+                deliveryBox.classList.remove('hidden');
+                pickupBox.classList.add('hidden');
+            } else {
+                btnPickup.className = "fulfillment-btn bg-amber-500 text-black font-extrabold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-amber-400 transition";
+                btnDelivery.className = "fulfillment-btn bg-slate-800 text-slate-300 font-bold p-2.5 rounded-xl text-xs flex flex-col items-center gap-1 border border-slate-700 transition hover:text-white";
+                pickupBox.classList.remove('hidden');
+                deliveryBox.classList.add('hidden');
+            }
+        }
+
+        function pinCurrentMapLocation(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            pinnedLat = (30.1500 + (y / 1000)).toFixed(4);
+            pinnedLng = (71.4500 + (x / 1000)).toFixed(4);
+
+            document.getElementById('mapPinCoords').textContent = `Latitude: ${pinnedLat}° N, Longitude: ${pinnedLng}° E (Pinned)`;
+            showToast('Map Pin Confirmed!', `Coordinates saved for Multan delivery.`);
+        }
+
+        function confirmAndCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty! Please add shoes to proceed.');
+                return;
+            }
+
+            let custName = 'Walk-in Customer';
+            let custPhone = 'N/A';
+            let addressInfo = 'Store Pickup at Changi #06 Multan';
+
+            if (fulfillmentType === 'delivery') {
+                custName = document.getElementById('custName').value.trim();
+                custPhone = document.getElementById('custPhone').value.trim();
+                const street = document.getElementById('custAddress').value.trim();
+
+                if (!custName || !custPhone || !street) {
+                    alert('Please provide your Name, Phone, and Delivery Address in Multan.');
+                    return;
+                }
+                addressInfo = `${street} (Map Pinned: ${pinnedLat}, ${pinnedLng})`;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const receiptNumber = 'HC-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Generate Receipt Content
+            const receiptHtml = `
+                <p><strong>Receipt #:</strong> ${receiptNumber}</p>
+                <p><strong>Customer:</strong> ${custName}</p>
+                <p><strong>Contact:</strong> ${custPhone}</p>
+                <p><strong>Method:</strong> ${fulfillmentType === 'delivery' ? 'Home Delivery' : 'In-Store Pickup (Changi #06)'}</p>
+                <p><strong>Address/Details:</strong> ${addressInfo}</p>
+                <p><strong>Order Expiry:</strong> 3 Days Reserved</p>
+                <hr class="border-slate-800 my-2">
+                <div><strong>Ordered Items:</strong></div>
+                ${cart.map(i => `<div>• ${i.title} x${i.qty} = Rs. ${(i.price * i.qty).toLocaleString()}</div>`).join('')}
+                <hr class="border-slate-800 my-2">
+                <p class="text-amber-400 text-sm"><strong>Total Payable: Rs. ${total.toLocaleString()}</strong></p>
+            `;
+
+            document.getElementById('receiptBody').innerHTML = receiptHtml;
+            document.getElementById('receiptModal').classList.remove('hidden');
+
+            // Reset cart
+            cart = [];
+            saveCart();
+            toggleCartDrawer();
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+            showToast('Order Complete', 'Thank you for shopping at High Chase Multan!');
+        }
+
+        function loadGeneralSectionData() {
+            const saved = localStorage.getItem('high_chase_general_info');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    if (data.announcement) document.getElementById('dispAnnouncement').textContent = data.announcement;
+                    if (data.address) document.getElementById('dispAddress').textContent = data.address;
+                    if (data.phone) document.getElementById('dispPhone').textContent = `Phone: ${data.phone}`;
+                } catch(e) {}
+            }
+        }
+
+        function toggleEditGeneralSection() {
+            const viewMode = document.getElementById('generalViewMode');
+            const editMode = document.getElementById('generalEditMode');
+
+            if (editMode.classList.contains('hidden')) {
+                document.getElementById('editAnnouncementInput').value = document.getElementById('dispAnnouncement').textContent;
+                document.getElementById('editAddressInput').value = document.getElementById('dispAddress').textContent;
+                document.getElementById('editPhoneInput').value = document.getElementById('dispPhone').textContent.replace('Phone: ', '');
+                editMode.classList.remove('hidden');
+                viewMode.classList.add('hidden');
+            } else {
+                editMode.classList.add('hidden');
+                viewMode.classList.remove('hidden');
+            }
+        }
+
+        function saveGeneralSection() {
+            const ann = document.getElementById('editAnnouncementInput').value.trim();
+            const addr = document.getElementById('editAddressInput').value.trim();
+            const ph = document.getElementById('editPhoneInput').value.trim();
+
+            if (ann) document.getElementById('dispAnnouncement').textContent = ann;
+            if (addr) document.getElementById('dispAddress').textContent = addr;
+            if (ph) document.getElementById('dispPhone').textContent = `Phone: ${ph}`;
+
+            localStorage.setItem('high_chase_general_info', JSON.stringify({
+                announcement: ann,
+                address: addr,
+                phone: ph
+            }));
+
+            toggleEditGeneralSection();
+            showToast('Owner Section Updated!', 'General store information saved.');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = msg;
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
